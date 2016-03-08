@@ -14,8 +14,13 @@ end
 
 class ActionDispatch::IntegrationTest
   include Capybara::DSL
+end
 
-  def teardown
-    reset_session!
+class Minitest::Spec
+end
+
+class ActionController::TestCase
+  def json_response
+    JSON.parse(response.body)
   end
 end
