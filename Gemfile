@@ -19,6 +19,10 @@ gem 'bcrypt', '~> 3.1.7'
 
 group :development, :test do
   gem 'pry'
+  gem 'capybara'
+  gem 'launchy'
+  gem 'mocha'
+  gem 'minitest-emoji'
 end
 
 group :development do
