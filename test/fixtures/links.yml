@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
-  url: MyString
+  title: "New Link"
+  url: "http://link.com"
   read: false
 
 two:
-  title: MyString
-  url: MyString
+  title: "Link 2"
+  url: "http://link.com"
   read: false

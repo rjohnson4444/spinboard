@@ -2,7 +2,7 @@ class Api::V1::LinksController < ApplicationController
   respond_to :json, :html
 
   def index
-    respond_with Link.all
+    respond_with Link.all_links
   end
 
   def create

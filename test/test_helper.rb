@@ -16,8 +16,8 @@ class ActionDispatch::IntegrationTest
   include Capybara::DSL
 end
 
-class Minitest::Spec
-end
+# class Minitest::Spec
+# end
 
 class ActionController::TestCase
   def json_response
