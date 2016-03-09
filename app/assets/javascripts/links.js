@@ -1,5 +1,3 @@
-'use strict'
-
 $(document).ready(() => {
     fetchLinks();
     createLink();
@@ -153,5 +151,5 @@ function markOutLink(link) {
 }
 
 function updateReadStatus(link, data) {
-    $(link).find('.read-status').text(`Read Status: ${data.read} `)
+    $(link).find('.read-status').text(`Read Status: ${data.read}`)
 }
