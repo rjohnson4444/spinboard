@@ -86,7 +86,7 @@ function editEvent(attribute) {
 
             $.ajax({
                 type: 'PUT',
-                url: `/api/v1/links/${linkId}`,
+                url: '/api/v1/links/' + linkId,
                 data: data,
                 success: function() {},
                 error: function(xhr) {
@@ -106,7 +106,7 @@ function markAsRead(linkClass, value) {
 
         $.ajax({
             type: 'PUT',
-            url:  `/api/v1/links/${linkId}`,
+            url:  '/api/v1/links/' + linkId,
             data: data,
             success: function() {
                 updateReadStatus($link, data)
@@ -128,7 +128,7 @@ function markAsUnread () {
 
         $.ajax({
             type: 'PUT',
-            url:  `/api/v1/links/${linkId}`,
+            url:  '/api/v1/links/' + linkId,
             data: data,
             success: function() {
                 updateReadStatus($link, data)
@@ -151,5 +151,5 @@ function markOutLink(link) {
 }
 
 function updateReadStatus(link, data) {
-    $(link).find('.read-status').text(`Read Status: ${data.read}`)
+    $(link).find('.read-status').text('Read Status: ' + data.read)
 }
