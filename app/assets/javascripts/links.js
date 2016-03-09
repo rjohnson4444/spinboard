@@ -30,7 +30,7 @@ function renderLinks(link) {
 }
 
 function fetchLinks() {
-    let newLinkId = parseInt($('.link').attr('data-id'));
+    var newLinkId = parseInt($('.link').attr('data-id'));
 
     $.ajax({
         type: 'GET',
@@ -50,7 +50,7 @@ function fetchLinks() {
 
 function createLink() {
     $('#create-link').on('click', function() {
-        let linkParams = {
+        var linkParams = {
             title: $('#link-title').val(),
             url: $('#link-url').val()
         }
@@ -74,14 +74,14 @@ function createLink() {
 
 function editEvent(attribute) {
     $('body').delegate('.' + attribute, 'keydown', function(e) {
-        let enterKey = e.which == 13
-        let data = { data: { } }
+        var enterKey = e.which == 13
+        var data = { data: { } }
 
         if(enterKey) {
             e.preventDefault();
             data[attribute] = e.target.textContent
-            let link = $(e.target).parent();
-            let linkId = $(link).attr('data-id')
+            var link = $(e.target).parent();
+            var linkId = $(link).attr('data-id')
 
 
             $.ajax({
@@ -100,9 +100,9 @@ function editEvent(attribute) {
 
 function markAsRead(linkClass, value) {
     $('#links-column').delegate('.read', 'click', function(e) {
-        let $link = $(e.target).closest('.link');
-        let data  = { read: true };
-        let linkId = $link.attr('data-id')
+        var $link = $(e.target).closest('.link');
+        var data  = { read: true };
+        var linkId = $link.attr('data-id')
 
         $.ajax({
             type: 'PUT',
@@ -122,9 +122,9 @@ function markAsRead(linkClass, value) {
 
 function markAsUnread () {
     $('#links-column').delegate('.unread', 'click', function(e) {
-        let $link = $(e.target).closest('.link');
-        let data  = { read: false };
-        let linkId = $link.attr('data-id')
+        var $link = $(e.target).closest('.link');
+        var data  = { read: false };
+        var linkId = $link.attr('data-id')
 
         $.ajax({
             type: 'PUT',
