@@ -1,4 +1,4 @@
-$(document).ready(() => {
+$(document).ready(function() {
     fetchLinks();
     createLink();
     editIdeas();
@@ -35,21 +35,21 @@ function fetchLinks() {
     $.ajax({
         type: 'GET',
         url:  '/api/v1/links.json',
-        success: (links) => {
-            $.each(links, (index, link) => {
+        success: function(links) {
+            $.each(links, function(index, link) {
                 if (isNaN(newLinkId) || link.id > newLinkId) {
                     renderLinks(link);
                 }
             });
         },
-        error: (xhr) => {
+        error: function(xhr) {
             console.log(xhr.responseText);
         }
     });
 }
 
 function createLink() {
-    $('#create-link').on('click', () => {
+    $('#create-link').on('click', function() {
         let linkParams = {
             title: $('#link-title').val(),
             url: $('#link-url').val()
@@ -59,12 +59,12 @@ function createLink() {
             type: 'POST',
             url:  '/api/v1/links.json',
             data: linkParams,
-            success: (newLink) => {
+            success: function(newLink) {
                 renderLinks(newLink)
                 $('#link-title').val("")
                 $('#link-url').val("")
             },
-            error: (xhr) => {
+            error: function(xhr) {
                 alert(xhr.responseText)
                 console.log(xhr.responseText);
             }
@@ -73,7 +73,7 @@ function createLink() {
 }
 
 function editEvent(attribute) {
-    $('body').delegate('.' + attribute, 'keydown', (e) => {
+    $('body').delegate('.' + attribute, 'keydown', function(e) {
         let enterKey = e.which == 13
         let data = { data: { } }
 
@@ -88,8 +88,8 @@ function editEvent(attribute) {
                 type: 'PUT',
                 url: `/api/v1/links/${linkId}`,
                 data: data,
-                success: () => {},
-                error: (xhr) => {
+                success: function() {},
+                error: function(xhr) {
                    console.log(xhr.responseText)
                 }
             })
@@ -99,7 +99,7 @@ function editEvent(attribute) {
 }
 
 function markAsRead(linkClass, value) {
-    $('#links-column').delegate('.read', 'click', (e) => {
+    $('#links-column').delegate('.read', 'click', function(e) {
         let $link = $(e.target).closest('.link');
         let data  = { read: true };
         let linkId = $link.attr('data-id')
@@ -108,11 +108,11 @@ function markAsRead(linkClass, value) {
             type: 'PUT',
             url:  `/api/v1/links/${linkId}`,
             data: data,
-            success: () => {
+            success: function() {
                 updateReadStatus($link, data)
                 markOutLink($link)
             },
-            error: (xhr) => {
+            error: function(xhr) {
                 console.log(xhr.responseText)
                 alert(xhr.responseText)
             }
@@ -121,7 +121,7 @@ function markAsRead(linkClass, value) {
 }
 
 function markAsUnread () {
-    $('#links-column').delegate('.unread', 'click', (e) => {
+    $('#links-column').delegate('.unread', 'click', function(e) {
         let $link = $(e.target).closest('.link');
         let data  = { read: false };
         let linkId = $link.attr('data-id')
@@ -130,11 +130,11 @@ function markAsUnread () {
             type: 'PUT',
             url:  `/api/v1/links/${linkId}`,
             data: data,
-            success: () => {
+            success: function() {
                 updateReadStatus($link, data)
                 returnColor($link)
             },
-            error: (xhr) => {
+            error: function(xhr) {
                 console.log(xhr.responseText)
                 alert(xhr.responseText)
             }
